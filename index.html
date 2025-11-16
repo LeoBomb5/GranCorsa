@@ -154,6 +154,20 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
+        .whats-new {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .whats-new h3 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 10px;
@@ -177,6 +191,16 @@
         </div>
         
         <div class="content">
+            <div class="whats-new">
+                <h3>🆕 NOVITÀ nella versione 1.81</h3>
+                <ul>
+                    <li>✅ Nuovi circuiti aggiunti</li>
+                    <li>✅ Miglioramenti delle prestazioni</li>
+                    <li>✅ Bug fixes e ottimizzazioni</li>
+                    <li>✅ Esperienza di guida più fluida</li>
+                </ul>
+            </div>
+            
             <div class="game-info">
                 <h2>📱 Informazioni sul Gioco</h2>
                 <p>Un emozionante gioco di corse con grafica accattivante e controlli fluidi. Sfida i tuoi amici e diventa il campione di Gran Corsa!</p>
@@ -199,19 +223,19 @@
             
             <div class="download-section">
                 <h2>📥 Scarica Ora</h2>
-                <p>Versione 1.8 | Android 8.0+ | 25 MB</p>
+                <p>Versione 1.81 | Android 8.0+ | 25 MB</p>
                 
                 <!-- PRIMO METODO: Link diretto -->
-                <a href="https://github.com/LeoBomb5/GranCorsa/releases/download/v1.8/Corsa1.8.apk" 
+                <a href="https://github.com/LeoBomb5/GranCorsa/releases/download/v1.81/Corsa1.81.apk" 
                    class="download-btn" 
-                   download="GranCorsa-v1.8.apk">
-                   🏁 SCARICA DIRETTA
+                   download="GranCorsa-v1.81.apk">
+                   🏁 SCARICA GRAN CORSA 1.81
                 </a>
                 
                 <br>
                 
                 <!-- SECONDO METODO: Link alla pagina release -->
-                <a href="https://github.com/LeoBomb5/GranCorsa/releases/tag/v1.8" 
+                <a href="https://github.com/LeoBomb5/GranCorsa/releases/tag/v1.81" 
                    class="download-btn manual-download" 
                    target="_blank">
                    📋 VAI ALLA PAGINA DOWNLOAD
@@ -221,7 +245,7 @@
                     <h3>📲 Scansiona per scaricare</h3>
                     <p>Usa la fotocamera del tuo telefono</p>
                     <!-- QR Code generato automaticamente -->
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/LeoBomb5/GranCorsa/releases/download/v1.8/Corsa1.8.apk" 
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/LeoBomb5/GranCorsa/releases/download/v1.81/Corsa1.81.apk" 
                          alt="QR Code per scaricare Gran Corsa">
                     <p><small>Punta la fotocamera su questo codice</small></p>
                 </div>
@@ -233,7 +257,7 @@
                 <ol>
                     <li>Clicca "VAI ALLA PAGINA DOWNLOAD"</li>
                     <li>Scorri in basso fino a "Assets"</li>
-                    <li>Clicca su "Corsa1.8.apk"</li>
+                    <li>Clicca su "Corsa1.81.apk"</li>
                     <li>Il download inizierà immediatamente</li>
                 </ol>
             </div>
@@ -262,6 +286,14 @@
         document.querySelectorAll('.download-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 console.log('Download cliccato: ' + this.textContent);
+                
+                // Tracciamento Google Analytics (se lo aggiungi in futuro)
+                if(typeof gtag !== 'undefined') {
+                    gtag('event', 'download', {
+                        'event_category': 'apk',
+                        'event_label': 'GranCorsa_v1.81'
+                    });
+                }
             });
         });
         
@@ -269,6 +301,10 @@
         if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             document.body.classList.add('mobile-device');
         }
+        
+        // Messaggio di benvenuto nella console
+        console.log('🎮 Benvenuto in Gran Corsa v1.81!');
+        console.log('📥 Download disponibile: https://github.com/LeoBomb5/GranCorsa/releases/download/v1.81/Corsa1.81.apk');
     </script>
 </body>
 </html>
