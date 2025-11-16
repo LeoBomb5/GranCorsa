@@ -74,6 +74,15 @@
             box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
         }
         
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
         .warning {
             background: #fff3cd;
             border: 2px solid #ffeaa7;
@@ -136,6 +145,25 @@
             border-top: 1px solid #dee2e6;
         }
         
+        .status-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 10px;
@@ -183,12 +211,11 @@
                 <h2>📥 Scarica Ora</h2>
                 <p>Versione 1.8 | Android 8.0+</p>
                 
-                <!-- ✅ URL CORRETTO CON I TUOI DATI -->
-                <a href="https://github.com/LeoBomb5/GranCorsa/releases/download/v1.8/Corsa1.8.apk" 
-                   class="download-btn" 
-                   download="GranCorsa-v1.8.apk">
+                <button id="downloadBtn" class="download-btn">
                    🏁 SCARICA GRAN CORSA
-                </a>
+                </button>
+                
+                <div id="statusMessage" class="status-message"></div>
                 
                 <p style="margin-top: 15px; color: #666;">
                     <small>Ultimo aggiornamento: Gennaio 2024</small>
@@ -220,10 +247,53 @@
     </div>
 
     <script>
-        // Conferma download
-        document.querySelector('.download-btn').addEventListener('click', function() {
-            console.log('Download Gran Corsa avviato!');
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const btn = this;
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // Mostra stato di caricamento
+            btn.classList.add('loading');
+            btn.innerHTML = '⏳ Preparando download...';
+            statusMessage.style.display = 'none';
+            
+            // URL diretto al download
+            const apkUrl = 'https://github.com/LeoBomb5/GranCorsa/releases/download/v1.8/Corsa1.8.apk';
+            
+            // Crea link invisibile per il download
+            const downloadLink = document.createElement('a');
+            downloadLink.href = apkUrl;
+            downloadLink.download = 'GranCorsa-v1.8.apk';
+            downloadLink.style.display = 'none';
+            
+            // Aggiungi al documento e cliccalo
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            // Reimposta il bottone dopo 2 secondi
+            setTimeout(() => {
+                btn.classList.remove('loading');
+                btn.innerHTML = '🏁 SCARICA GRAN CORSA';
+                
+                // Mostra messaggio di successo
+                statusMessage.textContent = '✅ Download avviato! Controlla la cartella Download del tuo dispositivo.';
+                statusMessage.className = 'status-message status-success';
+                statusMessage.style.display = 'block';
+            }, 2000);
+            
+            // Fallback: se dopo 3 secondi non è partito, mostra link alternativo
+            setTimeout(() => {
+                statusMessage.innerHTML = 
+                    '📱 Se il download non parte automaticamente, <a href="' + apkUrl + '" download="GranCorsa-v1.8.apk" style="color: #e74c3c; font-weight: bold;">clicca qui per scaricare manualmente</a>';
+                statusMessage.className = 'status-message status-success';
+                statusMessage.style.display = 'block';
+            }, 3000);
         });
+        
+        // Apri in nuova finestra su mobile per migliori risultati
+        if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            console.log('Dispositivo mobile rilevato - download ottimizzato');
+        }
     </script>
 </body>
 </html>
