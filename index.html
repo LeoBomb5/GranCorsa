@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Corsa - Scarica il Gioco</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e74c3c 0%, #e67e22 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c 0%, #e67e22 100%);
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .warning h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .game-info {
+            background: #ffeaa7;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏎️ Gran Corsa</h1>
+            <p>Corse ad alta velocità a portata di tap!</p>
+        </div>
+        
+        <div class="content">
+            <div class="game-info">
+                <h2>📱 Informazioni sul Gioco</h2>
+                <p>Un emozionante gioco di corse con grafica accattivante e controlli fluidi. Sfida i tuoi amici e diventa il campione di Gran Corsa!</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <h3>🎮 Controlli</h3>
+                        <p>Guidata semplice e intuitiva</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🏁 Circuiti</h3>
+                        <p>Multipli tracciati emozionanti</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🏆 Classifica</h3>
+                        <p>Sfida i migliori tempi</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="download-section">
+                <h2>📥 Scarica Ora</h2>
+                <p>Versione 1.8 | Android 8.0+</p>
+                
+                <!-- ✅ URL CORRETTO CON I TUOI DATI -->
+                <a href="https://github.com/LeoBomb5/GranCorsa/releases/download/v1.8/Corsa1.8.apk" 
+                   class="download-btn" 
+                   download="GranCorsa-v1.8.apk">
+                   🏁 SCARICA GRAN CORSA
+                </a>
+                
+                <p style="margin-top: 15px; color: #666;">
+                    <small>Ultimo aggiornamento: Gennaio 2024</small>
+                </p>
+            </div>
+            
+            <div class="warning">
+                <h3>⚠️ Importante: Istruzioni di Sicurezza</h3>
+                <p>Per installare questo file APK, dovrai abilitare l'installazione da fonti sconosciute. Questa è una procedura standard per app esterne al Play Store.</p>
+            </div>
+            
+            <div class="instructions">
+                <h3>📋 Come Installare</h3>
+                <ol>
+                    <li><strong>Scarica il file APK</strong> cliccando il pulsante sopra</li>
+                    <li><strong>Vai su Impostazioni → Sicurezza</strong> sul tuo dispositivo Android</li>
+                    <li><strong>Abilita "Origini sconosciute"</strong> (consenti installazione da fonti sconosciute)</li>
+                    <li><strong>Apri il file scaricato</strong> dalla cartella Download</li>
+                    <li><strong>Clicca "Installa"</strong> e attendi il completamento</li>
+                    <li><strong>Apri Gran Corsa</strong> e inizia a correre! 🏎️💨</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Gran Corsa by LeoBomb5. Tutti i diritti riservati.</p>
+            <p><small>Per supporto tecnico contatta lo sviluppatore</small></p>
+        </div>
+    </div>
+
+    <script>
+        // Conferma download
+        document.querySelector('.download-btn').addEventListener('click', function() {
+            console.log('Download Gran Corsa avviato!');
+        });
+    </script>
+</body>
+</html>
