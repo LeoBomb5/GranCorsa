@@ -4,290 +4,587 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gran Corsa - Scarica il Gioco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        :root {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --secondary: #3498db;
+            --accent: #f39c12;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --success: #27ae60;
+            --warning: #f1c40f;
+            --border-radius: 16px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
-            color: #333;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
         }
         
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
         
-        .header {
-            background: linear-gradient(135deg, #e74c3c 0%, #e67e22 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M20,20 Q40,5 60,20 T100,20" stroke="white" fill="none" stroke-width="2"/></svg>');
+            background-size: cover;
+        }
+        
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
         }
         
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            position: relative;
         }
         
         .header p {
-            font-size: 1.2em;
+            font-size: 1rem;
             opacity: 0.9;
+            font-weight: 300;
         }
         
-        .content {
-            padding: 40px;
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
         }
         
-        .download-section {
+        .card {
+            background: var(--card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:active {
+            transform: translateY(2px);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        /* DOWNLOAD SECTION */
+        .download-main {
             text-align: center;
-            margin: 30px 0;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border: 2px dashed #e9ecef;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .file-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .file-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #e74c3c 0%, #e67e22 100%);
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 18px 45px;
+            padding: 18px 24px;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.3em;
-            font-weight: bold;
-            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
             transition: all 0.3s ease;
             border: none;
-            cursor: pointer;
-            margin: 10px;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
-        }
-        
-        .manual-download {
-            background: #3498db;
-            margin-top: 10px;
-        }
-        
-        .warning {
-            background: #fff3cd;
-            border: 2px solid #ffeaa7;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: left;
-        }
-        
-        .warning h3 {
-            color: #856404;
-            margin-bottom: 10px;
-        }
-        
-        .instructions {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 25px 0;
-            text-align: left;
-        }
-        
-        .instructions ol {
-            margin-left: 20px;
-        }
-        
-        .instructions li {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        
-        .game-info {
-            background: #ffeaa7;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 25px 0;
-            text-align: left;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
             margin: 20px 0;
+            position: relative;
+            overflow: hidden;
         }
         
-        .feature {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            text-align: center;
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(rgba(255,255,255,0.1), transparent);
+            transform: rotate(30deg);
+            transition: all 0.3s ease;
         }
         
-        .footer {
-            text-align: center;
+        .download-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .download-btn:active::after {
+            transform: rotate(30deg) translate(10px, 10px);
+        }
+        
+        .qr-section {
+            margin: 20px 0;
             padding: 20px;
-            background: #f8f9fa;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
+            background: var(--bg);
+            border-radius: var(--border-radius);
         }
         
         .qr-code {
-            text-align: center;
-            margin: 20px 0;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
         }
         
         .qr-code img {
-            max-width: 200px;
-            border: 5px solid white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
         }
         
-        .whats-new {
-            background: #d4edda;
-            border: 2px solid #c3e6cb;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: left;
+        /* FEATURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
         }
         
-        .whats-new h3 {
-            color: #155724;
-            margin-bottom: 10px;
+        .feature-item {
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.2s ease;
         }
         
-        @media (max-width: 600px) {
+        .feature-item:active {
+            transform: scale(0.95);
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .feature-item h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .feature-item p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        /* INSTRUCTIONS */
+        .steps {
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #2980b9 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* WARNING */
+        .warning-card {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid var(--warning);
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        
+        .footer-link {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:active {
+            color: white;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 10px;
+        }
+        
+        /* DESKTOP ENHANCEMENTS */
+        @media (min-width: 768px) {
             .container {
-                margin: 10px;
-            }
-            
-            .content {
                 padding: 20px;
             }
             
-            .header h1 {
-                font-size: 2em;
+            .main-content {
+                max-width: 600px;
+            }
+            
+            .header {
+                border-radius: var(--border-radius);
+                margin: 0 20px;
+                margin-top: 20px;
+            }
+            
+            .card {
+                padding: 30px;
+            }
+            
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .download-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+            }
+            
+            .feature-item:hover {
+                transform: translateY(-3px);
+            }
+            
+            .footer-link:hover {
+                color: white;
             }
         }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- HEADER -->
         <div class="header">
-            <h1>🏎️ Gran Corsa</h1>
-            <p>Corse ad alta velocità a portata di tap!</p>
+            <div class="game-icon">
+                🏎️
+            </div>
+            <h1>Gran Corsa</h1>
+            <p>Corse ad alta velocità nel tuo telefono</p>
         </div>
         
-        <div class="content">
-            <div class="whats-new">
-                <h3>🆕 NOVITÀ nella versione 1.81</h3>
-                <ul>
-                    <li>✅ Pits Update</li>
-                    <li>✅ Miglioramenti delle prestazioni</li>
-                    <li>✅ Bug fixes e ottimizzazioni</li>
-                    <li>✅ Esperienza di guida più fluida</li>
-                </ul>
-            </div>
-            
-            <div class="game-info">
-                <h2>📱 Informazioni sul Gioco</h2>
-                <p>Un emozionante gioco di corse con grafica semplice ma realistica e controlli fluidi. Per il momento ancora in Alpha</p>
-                
-                <div class="features">
-                    <div class="feature">
-                        <h3>🎮 Controlli</h3>
-                        <p>Guidata semplice e intuitiva</p>
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- WHAT'S NEW CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-star"></i>
                     </div>
-                    <div class="feature">
-                        <h3>🏁 Circuiti</h3>
-                        <p>Ci saranno nuovi tracciati presto</p>
+                    <h2>Novità nella 1.81</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🔄</div>
+                        <h4>Prestazioni</h4>
+                        <p>Più fluido</p>
                     </div>
-                    <div class="feature">
-                        <h3>🏆 Classifica</h3>
-                        <p>Sfida i migliori tempi</p>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛣️</div>
+                        <h4>Circuiti</h4>
+                        <p>Nuove piste</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎮</div>
+                        <h4>Controlli</h4>
+                        <p>Migliorati</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🐛</div>
+                        <h4>Bug Fix</h4>
+                        <p>Problemi risolti</p>
                     </div>
                 </div>
             </div>
             
-            <div class="download-section">
-                <h2>📥 Scarica Ora</h2>
-                <p>Versione 1.81 | Android 8.0+ | 25 MB</p>
+            <!-- DOWNLOAD CARD -->
+            <div class="card download-main">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h2>Scarica Ora</h2>
+                </div>
                 
-                <!-- PRIMO METODO: Link diretto -->
+                <div class="version-badge">
+                    Versione 1.81
+                </div>
+                
+                <div class="file-info">
+                    <span><i class="fas fa-mobile-alt"></i> Android 8.0+</span>
+                    <span><i class="fas fa-weight-hanging"></i> 25 MB</span>
+                </div>
+                
                 <a href="https://github.com/LeoBomb5/GranCorsa/releases/download/v1.81/Corsa1.81.apk" 
                    class="download-btn" 
                    download="GranCorsa-v1.81.apk">
-                   🏁 SCARICA GRAN CORSA 1.81
+                   <i class="fas fa-download"></i> SCARICA GRATIS
                 </a>
                 
-                <br>
-                
-                <!-- SECONDO METODO: Link alla pagina release -->
-                <a href="https://github.com/LeoBomb5/GranCorsa/releases/tag/v1.81" 
-                   class="download-btn manual-download" 
-                   target="_blank">
-                   📋 VAI ALLA PAGINA DOWNLOAD
-                </a>
-                
-                <div class="qr-code">
-                    <h3>📲 Scansiona per scaricare</h3>
-                    <p>Usa la fotocamera del tuo telefono</p>
-                    <!-- QR Code generato automaticamente -->
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/LeoBomb5/GranCorsa/releases/download/v1.81/Corsa1.81.apk" 
-                         alt="QR Code per scaricare Gran Corsa">
-                    <p><small>Punta la fotocamera su questo codice</small></p>
+                <div class="qr-section">
+                    <p style="margin-bottom: 15px; color: var(--text-light);">
+                        <i class="fas fa-qrcode"></i> Scansiona con il telefono
+                    </p>
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://github.com/LeoBomb5/GranCorsa/releases/download/v1.81/Corsa1.81.apk" 
+                             alt="QR Code per Gran Corsa">
+                    </div>
                 </div>
             </div>
             
-            <div class="warning">
-                <h3>⚠️ Istruzioni di Installazione</h3>
-                <p><strong>Se il download non parte automaticamente:</strong></p>
-                <ol>
-                    <li>Clicca "VAI ALLA PAGINA DOWNLOAD"</li>
-                    <li>Scorri in basso fino a "Assets"</li>
-                    <li>Clicca su "Corsa1.81.apk"</li>
-                    <li>Il download inizierà immediatamente</li>
-                </ol>
+            <!-- INSTRUCTIONS CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h2>Come Installare</h2>
+                </div>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Scarica il file</h4>
+                            <p>Clicca il pulsante "SCARICA GRATIS" sopra</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Permetti installazioni</h4>
+                            <p>Vai in Impostazioni → Sicurezza → Abilita "Origini sconosciute"</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Installa il gioco</h4>
+                            <p>Apri il file scaricato e clicca "Installa"</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Goditi il gioco!</h4>
+                            <p>Apri Gran Corsa e inizia a correre! 🏎️</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="instructions">
-                <h3>📋 Come Installare sul Telefono</h3>
-                <ol>
-                    <li><strong>Scarica il file APK</strong> con uno dei metodi sopra</li>
-                    <li><strong>Vai su Impostazioni → Sicurezza</strong></li>
-                    <li><strong>Abilita "Origini sconosciute"</strong></li>
-                    <li><strong>Apri il file scaricato</strong> dalla cartella Download</li>
-                    <li><strong>Clicca "Installa"</strong></li>
-                    <li><strong>Apri Gran Corsa</strong> e inizia a correre! 🏎️💨</li>
-                </ol>
+            <!-- WARNING CARD -->
+            <div class="card warning-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2>Importante</h2>
+                </div>
+                <p>Il download potrebbe aprirsi in una nuova pagina. Clicca sul file "Corsa1.81.apk" per avviare il download.</p>
             </div>
         </div>
         
+        <!-- FOOTER -->
         <div class="footer">
-            <p>© 2024 Gran Corsa by LeoBomb5. Tutti i diritti riservati.</p>
-            <p><small>Se hai problemi con il download, visita: <br>https://github.com/LeoBomb5/GranCorsa/releases</small></p>
+            <div class="footer-links">
+                <a href="https://github.com/LeoBomb5/GranCorsa/releases" class="footer-link" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://github.com/LeoBomb5/GranCorsa/issues" class="footer-link" target="_blank">
+                    <i class="fas fa-bug"></i> Segnala Bug
+                </a>
+            </div>
+            <p class="copyright">
+                © 2024 Gran Corsa by LeoBomb5<br>
+                Tutti i diritti riservati
+            </p>
         </div>
     </div>
 
     <script>
-        // Aggiungi conferma click per analytics
-        document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                console.log('Download cliccato: ' + this.textContent);
+        // Mobile optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add touch feedback
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transition = 'transform 0.1s ease';
+                });
                 
-                // Tracciamento Google Analytics (se lo aggiungi in futuro)
+                card.addEventListener('touchend', function() {
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                });
+            });
+            
+            // Analytics tracking
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.addEventListener('click', function() {
+                console.log('🎮 Download avviato: Gran Corsa v1.81');
+                
+                // Google Analytics (se aggiunto in futuro)
                 if(typeof gtag !== 'undefined') {
                     gtag('event', 'download', {
                         'event_category': 'apk',
@@ -295,16 +592,14 @@
                     });
                 }
             });
+            
+            // Vibration on mobile (optional)
+            if('vibrate' in navigator) {
+                downloadBtn.addEventListener('touchstart', function() {
+                    navigator.vibrate(10);
+                });
+            }
         });
-        
-        // Rileva dispositivo mobile
-        if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            document.body.classList.add('mobile-device');
-        }
-        
-        // Messaggio di benvenuto nella console
-        console.log('🎮 Benvenuto in Gran Corsa v1.81!');
-        console.log('📥 Download disponibile: https://github.com/LeoBomb5/GranCorsa/releases/download/v1.81/Corsa1.81.apk');
     </script>
 </body>
 </html>
